@@ -9,6 +9,6 @@ resource "google_storage_bucket" "bucket" {
 }
 
 resource "google_project_service" "storage_api" {
-  project = "your-gcp-project-id"
+  project = "githubactions-444207"
   service = "storage.googleapis.com"
 }
