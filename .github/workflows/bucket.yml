@@ -23,8 +23,16 @@ jobs:
     - name: Install Terraform
       uses: hashicorp/setup-terraform@v1
 
+    - name: Set GOOGLE_CREDENTIALS environment variable
+      run: echo "${{ secrets.GCP_SA_KEY }}" > /tmp/google-credentials.json
+      shell: bash
+
     - name: Terraform Init
+      env:
+        GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
       run: terraform init
 
     - name: Terraform Apply
+      env:
+        GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
       run: terraform apply -auto-approve
